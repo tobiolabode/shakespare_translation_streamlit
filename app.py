@@ -4,9 +4,9 @@ import pickle
 import re
 import string
 
-import numpy as np # type: ignore
+import numpy as np  # type: ignore
 import requests
-from tensorflow.keras.models import load_model # type: ignore
+from tensorflow.keras.models import load_model  # type: ignore
 
 from configs import config
 
@@ -15,9 +15,9 @@ max_length_src = config["max_length_src"]
 max_length_tar = config["max_length_tar"]
 
 print("[INFO] Loading Word Indexes ...")
-with open(config.input_word_index, "rb") as file:
+with open(config["input_word_index"], "rb") as file:
     input_token_index = pickle.load(file)
-with open(config.target_word_index, "rb") as file:
+with open(config["target_word_index"], "rb") as file:
     target_token_index = pickle.load(file)
 reverse_input_char_index = dict((i, word) for word, i in input_token_index.items())
 reverse_target_char_index = dict((i, word) for word, i in target_token_index.items())

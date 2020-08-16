@@ -9,6 +9,7 @@ from configs import config
 app = Sanic(__name__)
 url = config["url"]
 
+
 @app.route("/translate", methods=["POST"])
 async def translate_seq(request):
     data = request.json
