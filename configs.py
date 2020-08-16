@@ -1,4 +1,4 @@
-from attrdict import AttrDict
+from attrdict import AttrDict # type: ignore
 
 config = {
     "encoder_path": "models/encoder_model.h5",

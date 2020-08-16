@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.7, 3.8]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
@@ -43,4 +43,4 @@ jobs:
     - name: Run flake8
       run: flake8
     - name: Run Mypy
-      run: mypy app
+      run: mypy *.py

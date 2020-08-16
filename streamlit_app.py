@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st # type: ignore
 
 from app import decode_sequence, decode_sequence_beam_search
 from configs import config
