@@ -4,9 +4,9 @@ import pickle
 import re
 import string
 
-import numpy as np # type: ignore
+import numpy as np  # type: ignore
 import requests
-from tensorflow.keras.models import load_model # type: ignore
+from tensorflow.keras.models import load_model  # type: ignore
 
 from configs import config
 
