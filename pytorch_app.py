@@ -172,7 +172,7 @@ print('Loading models ... \n')
 hidden_size = 256
 
 encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
-encoder1.load_state_dict(torch.load('models\My models\Model files Seq2Seq\\encoder1.pt'))
+encoder1.load_state_dict(torch.load('models\\My models\\Model files Seq2Seq\\encoder1.pt'))
 encoder1.eval()
 
 attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words).to(device)  # load decoder model
