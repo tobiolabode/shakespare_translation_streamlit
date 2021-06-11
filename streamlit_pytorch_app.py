@@ -2,12 +2,28 @@ import streamlit as st  # type: ignore
 
 # FIXME: AttributeError: Can't get attribute 'Lang' on <module '__main__' from '/content/shakespare_translation_streamlit/streamlit_pytorch_app.py'>
 import pickle
-import pytorch_app  # import Foo into main_module's namespace explicitly
-from pytorch_app import Lang
+try:
+    import pytorch_app  # import Foo into main_module's namespace explicitly
+    from pytorch_app import Lang
+except AttributeError:
+    class CustomUnpickler(pickle.Unpickler):
+
+        def find_class(self, module, name):
+            if name == 'Lang':
+                from pytorch_app import Lang
+                return Lang
+            return super().find_class(module, name)
+
+    print('Using CustomUnpickler')
+    input_lang = CustomUnpickler(open('Input_outputs_langs/input_lang.pkl', 'rb')).load()
+    output_lang = CustomUnpickler(open('Input_outputs_langs/output_lang.pkl', 'rb')).load()
+
+
 from pytorch_app import EncoderRNN, AttnDecoderRNN, encoder1, attn_decoder1, evaluate
 # from app import decode_sequence, decode_sequence_beam_search
 # from configs import config
 # from server import get_english_translation, get_spanish_translation
+
 
 # title
 st.title("English to Shakespare Translator")
