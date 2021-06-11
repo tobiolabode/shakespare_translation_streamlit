@@ -58,9 +58,23 @@ class Lang:
 LANG_PATH = 'Input_outputs_langs/'
 # Input_outputs_langs/input_lang.pkl
 
-infile_input_lang = open('Input_outputs_langs/input_lang.pkl', 'rb')
-input_lang = pickle.load(infile_input_lang)
-infile_input_lang.close()
+
+class CustomUnpickler(pickle.Unpickler):
+
+    def find_class(self, module, name):
+        if name == 'Lang':
+            from pytorch_app import Lang
+            return Lang
+        return super().find_class(module, name)
+
+
+try:
+    infile_input_lang = open('Input_outputs_langs/input_lang.pkl', 'rb')
+    input_lang = pickle.load(infile_input_lang)
+    infile_input_lang.close()
+except AttributeError:
+    print('Using CustomUnpickler')
+    input_lang = CustomUnpickler(open('Input_outputs_langs/input_lang.pkl', 'rb')).load()
 
 infile_output_lang = open('Input_outputs_langs/output_lang.pkl', 'rb')
 output_lang = pickle.load(infile_output_lang)

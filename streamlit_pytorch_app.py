@@ -1,6 +1,9 @@
 import streamlit as st  # type: ignore
 
 # FIXME: AttributeError: Can't get attribute 'Lang' on <module '__main__' from '/content/shakespare_translation_streamlit/streamlit_pytorch_app.py'>
+# Error caused with pickled object was created in main module
+# FIXME: ModuleNotFoundError: No module named 'torch' on local machine
+# Maybe conda verion of pytorch
 import pickle
 try:
     import pytorch_app  # import Foo into main_module's namespace explicitly
