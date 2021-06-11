@@ -56,12 +56,13 @@ class Lang:
 
 
 LANG_PATH = 'Input_outputs_langs/'
+# Input_outputs_langs/input_lang.pkl
 
-infile_input_lang = open('Input_outputs_langs\input_lang.pkl', 'rb')
+infile_input_lang = open('Input_outputs_langs/input_lang.pkl', 'rb')
 input_lang = pickle.load(infile_input_lang)
 infile_input_lang.close()
 
-infile_output_lang = open('Input_outputs_langs\output_lang.pkl', 'rb')
+infile_output_lang = open('Input_outputs_langs/output_lang.pkl', 'rb')
 output_lang = pickle.load(infile_output_lang)
 infile_output_lang.close()
 
