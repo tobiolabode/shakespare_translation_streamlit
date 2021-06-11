@@ -1,6 +1,6 @@
 import streamlit as st  # type: ignore
 
-
+import pytorch_app
 from pytorch_app import Lang, EncoderRNN, AttnDecoderRNN, encoder1, attn_decoder1, evaluate
 # from app import decode_sequence, decode_sequence_beam_search
 # from configs import config
