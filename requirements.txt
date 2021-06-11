@@ -3,3 +3,5 @@ numpy==1.18.2
 sanic==19.12.2
 streamlit==0.64.0
 tensorflow-cpu==2.2.1
+pytorch
+torch
