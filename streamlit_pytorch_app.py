@@ -1,7 +1,7 @@
 import streamlit as st  # type: ignore
 
 
-from pytorch_app import evaluate, encoder1, attn_decoder1
+from pytorch_app import evaluate, encoder1, attn_decoder1, Lang, EncoderRNN, AttnDecoderRNN
 # from app import decode_sequence, decode_sequence_beam_search
 # from configs import config
 # from server import get_english_translation, get_spanish_translation
