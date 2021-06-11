@@ -1,7 +1,10 @@
 import streamlit as st  # type: ignore
 
-import pytorch_app
-from pytorch_app import Lang, EncoderRNN, AttnDecoderRNN, encoder1, attn_decoder1, evaluate
+# FIXME: AttributeError: Can't get attribute 'Lang' on <module '__main__' from '/content/shakespare_translation_streamlit/streamlit_pytorch_app.py'>
+import pickle
+import pytorch_app  # import Foo into main_module's namespace explicitly
+from pytorch_app import Lang
+from pytorch_app import EncoderRNN, AttnDecoderRNN, encoder1, attn_decoder1, evaluate
 # from app import decode_sequence, decode_sequence_beam_search
 # from configs import config
 # from server import get_english_translation, get_spanish_translation
