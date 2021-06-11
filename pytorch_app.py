@@ -76,9 +76,14 @@ except AttributeError:
     print('Using CustomUnpickler')
     input_lang = CustomUnpickler(open('Input_outputs_langs/input_lang.pkl', 'rb')).load()
 
-infile_output_lang = open('Input_outputs_langs/output_lang.pkl', 'rb')
-output_lang = pickle.load(infile_output_lang)
-infile_output_lang.close()
+try:
+    infile_output_lang = open('Input_outputs_langs/output_lang.pkl', 'rb')
+    output_lang = pickle.load(infile_output_lang)
+    infile_output_lang.close()
+except AttributeError:
+    print('Using CustomUnpickler')
+    output_lang = CustomUnpickler(open('Input_outputs_langs/output_lang.pkl', 'rb')).load()
+
 
 print('--------\nTesting pickle loading: ')
 print('input lang', input_lang)
