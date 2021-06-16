@@ -6,6 +6,7 @@ import streamlit as st  # type: ignore
 # Maybe conda verion of pytorch
 import pickle
 import random
+import io
 try:
     import pytorch_app  # import Foo into main_module's namespace explicitly
     from pytorch_app import Lang
@@ -43,12 +44,12 @@ def evaluateRandomly(encoder, decoder, n=10):
 
 
 try:
-    pairs = open('Input_outputs_langs/pairs.pkl')
-    pairs = pairs.read()
+    pairs = io.open('Input_outputs_langs/pairs.pkl')
+    # pairs = pairs.read()
 except AttributeError:
     print('Using CustomUnpickler')
-    pairs = CustomUnpickler(open('Input_outputs_langs/pairs.pkl', 'rb')).load()
-    pairs = pairs.read()
+    pairs = CustomUnpickler(io.open('Input_outputs_langs/pairs.pkl', 'rb')).load()
+    # pairs = pairs.read()
 
 
 # title
