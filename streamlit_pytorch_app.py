@@ -46,7 +46,7 @@ try:
     pairs = open('Input_outputs_langs/pairs.pkl')
 except AttributeError:
     print('Using CustomUnpickler')
-    input_lang = CustomUnpickler(open('Input_outputs_langs/pairs.pkl', 'rb')).load()
+    pairs = CustomUnpickler(open('Input_outputs_langs/pairs.pkl', 'rb')).load()
 
 
 # title
