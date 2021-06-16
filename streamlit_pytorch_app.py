@@ -43,14 +43,26 @@ def evaluateRandomly(encoder, decoder, n=10):
         return output_sentence, pair[0], pair[1]
 
 
+class CustomUnpickler(pickle.Unpickler):
+
+    def find_class(self, module, name):
+        if name == 'pairs':
+            from pytorch_app import Lang
+            return Lang
+        return super().find_class(module, name)
+
+# FIXME: Cant use CustomUnpickler for non-classes
+
+
 try:
     pairs = open('Input_outputs_langs/pairs.pkl', 'rb')
     pairs = pickle.load(pairs)
     pairs.close()
     # pairs = pairs.read()
 except AttributeError:
+    pass
     print('Using CustomUnpickler')
-    pairs = CustomUnpickler(io.open('Input_outputs_langs/pairs.pkl', 'rb')).load()
+    # pairs = CustomUnpickler(io.open('Input_outputs_langs/pairs.pkl', 'rb')).load()
     # pairs = pairs.read()
 
 
