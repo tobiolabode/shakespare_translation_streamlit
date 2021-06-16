@@ -44,9 +44,11 @@ def evaluateRandomly(encoder, decoder, n=10):
 
 try:
     pairs = open('Input_outputs_langs/pairs.pkl')
+    pairs = pairs.read()
 except AttributeError:
     print('Using CustomUnpickler')
     pairs = CustomUnpickler(open('Input_outputs_langs/pairs.pkl', 'rb')).load()
+    pairs = pairs.read()
 
 
 # title
