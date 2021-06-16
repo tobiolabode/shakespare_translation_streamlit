@@ -40,7 +40,7 @@ def evaluateRandomly(encoder, decoder, n=10):
         output_sentence = ' '.join(output_words)
         st.write('<', output_sentence)
         st.write('')
-        return output_sentence, pair[0], pair[1]
+        # return output_sentence, pair[0], pair[1]
 
 
 class CustomUnpickler(pickle.Unpickler):
@@ -98,7 +98,7 @@ if st.button("Submit"):
 if st.button("Random Pairs"):
     with st.spinner("Generating..."):
         for i in range(5):
-            st.success(evaluateRandomly(encoder1, attn_decoder1))
+            evaluateRandomly(encoder1, attn_decoder1)
         # output_sentence, pair_1, pair_2 = evaluateRandomly(encoder1, attn_decoder1)
         # for i in range(10):
         #     st.write('>>', pair_1)
