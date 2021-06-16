@@ -5,6 +5,7 @@ import streamlit as st  # type: ignore
 # FIXME: ModuleNotFoundError: No module named 'torch' on local machine
 # Maybe conda verion of pytorch
 import pickle
+import random
 try:
     import pytorch_app  # import Foo into main_module's namespace explicitly
     from pytorch_app import Lang
@@ -26,6 +27,26 @@ from pytorch_app import EncoderRNN, AttnDecoderRNN, encoder1, attn_decoder1, eva
 # from app import decode_sequence, decode_sequence_beam_search
 # from configs import config
 # from server import get_english_translation, get_spanish_translation
+
+
+# pytorch functions
+def evaluateRandomly(encoder, decoder, n=10):
+    for i in range(n):
+        pair = random.choice(pairs)
+        print('>', pair[0])
+        print('=', pair[1])
+        output_words, attentions = evaluate(encoder, decoder, pair[0])
+        output_sentence = ' '.join(output_words)
+        print('<', output_sentence)
+        print('')
+        return output_sentence, pair[0], pair[1]
+
+
+try:
+    pairs = open('Input_outputs_langs/pairs.pkl')
+except AttributeError:
+    print('Using CustomUnpickler')
+    input_lang = CustomUnpickler(open('Input_outputs_langs/pairs.pkl', 'rb')).load()
 
 
 # title
@@ -56,6 +77,17 @@ if st.button("Submit"):
         # st.subheader("Actual Shakespare Translation")
         # st.success(f"{get_spanish_translation(input_text)}")
 
+# insert random pairs
+if st.button("Random Pairs"):
+    with st.spinner("Generating..."):
+        output_sentence, pair_1, pair_2 = evaluateRandomly(encoder1, attn_decoder1)
+        st.write('>', pair_1)
+        st.write('=', pair_2)
+        st.write('<', output_sentence)
+        st.write('')
+
+
+# insert attention matrrics
 
 # # return response
 # if st.button("Submit"):
