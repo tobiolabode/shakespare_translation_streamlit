@@ -175,11 +175,13 @@ hidden_size = 256
 # Streamlit error
 # I will change the backslashes to forwards like earlier. With a similar error.
 encoder1 = EncoderRNN(input_lang.n_words, hidden_size).to(device)
-encoder1.load_state_dict(torch.load('models/My models/Model files Seq2Seq/encoder1.pt'))
+encoder1.load_state_dict(torch.load(
+    'models/My models/Model files Seq2Seq/encoder1.pt', map_location='cpu'))
 encoder1.eval()
 
 attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words).to(device)  # load decoder model
-attn_decoder1.load_state_dict(torch.load('models/My models/Model files Seq2Seq/attn_decoder1.pt'))
+attn_decoder1.load_state_dict(torch.load(
+    'models/My models/Model files Seq2Seq/attn_decoder1.pt', map_location='cpu'))
 attn_decoder1.eval()
 
 # Checking state dicts for saving
