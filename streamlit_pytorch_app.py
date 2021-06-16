@@ -34,12 +34,12 @@ from pytorch_app import EncoderRNN, AttnDecoderRNN, encoder1, attn_decoder1, eva
 def evaluateRandomly(encoder, decoder, n=10):
     for i in range(n):
         pair = random.choice(pairs)
-        print('>', pair[0])
-        print('=', pair[1])
+        st.write('\>', pair[0])
+        st.write('=', pair[1])
         output_words, attentions = evaluate(encoder, decoder, pair[0])
         output_sentence = ' '.join(output_words)
-        print('<', output_sentence)
-        print('')
+        st.write('<', output_sentence)
+        st.write('')
         return output_sentence, pair[0], pair[1]
 
 
@@ -97,12 +97,13 @@ if st.button("Submit"):
 # insert random pairs
 if st.button("Random Pairs"):
     with st.spinner("Generating..."):
-        output_sentence, pair_1, pair_2 = evaluateRandomly(encoder1, attn_decoder1)
-        for i in range(10):
-            st.write('>>', pair_1)
-            st.write('=', pair_2)
-            st.write('<', output_sentence)
-            st.write('')
+        evaluateRandomly(encoder1, attn_decoder1)
+        # output_sentence, pair_1, pair_2 = evaluateRandomly(encoder1, attn_decoder1)
+        # for i in range(10):
+        #     st.write('>>', pair_1)
+        #     st.write('=', pair_2)
+        #     st.write('<', output_sentence)
+        #     st.write('')
 
 
 # insert attention matrrics
