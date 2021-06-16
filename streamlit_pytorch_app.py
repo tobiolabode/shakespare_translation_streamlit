@@ -31,7 +31,7 @@ from pytorch_app import EncoderRNN, AttnDecoderRNN, encoder1, attn_decoder1, eva
 
 
 # pytorch functions
-def evaluateRandomly(encoder, decoder, n=10):
+def evaluateRandomly(encoder, decoder, n=5):
     for i in range(n):
         pair = random.choice(pairs)
         st.write('\>', pair[0])
