@@ -121,7 +121,7 @@ if st.button("Submit"):
         predicted_seq, attentions = evaluate(encoder1, attn_decoder1, input_text)
         formatted_predicted_seq = ' '.join(predicted_seq)
         st.success(formatted_predicted_seq)
-        st.pyplot(showAttention(input_text, predicted_seq, attentions))
+        st.success(showAttention(input_text, predicted_seq, attentions))
 
         # #correct Translation
         # st.subheader("Actual Shakespare Translation")
