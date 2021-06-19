@@ -7,6 +7,8 @@ import streamlit as st  # type: ignore
 import pickle
 import random
 import io
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 try:
     import pytorch_app  # import Foo into main_module's namespace explicitly
     from pytorch_app import Lang
@@ -66,6 +68,35 @@ except AttributeError:
     # pairs = pairs.read()
 
 
+# TODO: insert attention matrrics
+
+def showAttention(input_sentence, output_words, attentions):
+    # Set up figure with colorbar
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    cax = ax.matshow(attentions.numpy(), cmap='bone')
+    fig.colorbar(cax)
+
+    # Set up axes
+    ax.set_xticklabels([''] + input_sentence.split(' ') +
+                       ['<EOS>'], rotation=90)
+    ax.set_yticklabels([''] + output_words)
+
+    # Show label at every tick
+    ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
+    ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
+
+    plt.show()
+
+
+def evaluateAndShowAttention(input_sentence):
+    output_words, attentions = evaluate(
+        encoder1, attn_decoder1, input_sentence)
+    print('input =', input_sentence)
+    print('output =', ' '.join(output_words))
+    showAttention(input_sentence, output_words, attentions)
+
+
 # title
 st.title("English to Shakespare Translator")
 st.markdown(
@@ -89,6 +120,7 @@ if st.button("Submit"):
         predicted_seq, attentions = evaluate(encoder1, attn_decoder1, input_text)
         formatted_predicted_seq = ' '.join(predicted_seq)
         st.success(formatted_predicted_seq)
+        st.pyplot(showAttention(input_text, predicted_seq, attentions))
 
         # #correct Translation
         # st.subheader("Actual Shakespare Translation")
@@ -107,7 +139,14 @@ if st.button("Random Pairs"):
         #     st.write('')
 
 
-# insert attention matrrics
+# evaluateAndShowAttention("elle a cinq ans de moins que moi .")
+#
+# evaluateAndShowAttention("elle est trop petit .")
+#
+# evaluateAndShowAttention("je ne crains pas de mourir .")
+#
+# evaluateAndShowAttention("c est un jeune directeur plein de talent .")
+
 
 # # return response
 # if st.button("Submit"):
