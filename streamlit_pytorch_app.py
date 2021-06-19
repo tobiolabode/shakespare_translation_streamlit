@@ -102,7 +102,10 @@ def evaluateAndShowAttention(input_sentence):
 st.title("English to Shakespare Translator")
 st.markdown(
     """
-This is demo English to Shakespare Translator. The template for this code was from [insert name here]
+This is demo English to Shakespare Translator. The template for this code was from [adimyth](https://github.com/adimyth/translate_app/tree/master)
+Check out my blog post about the project at [Tobiolabode.com](https://www.tobiolabode.com).
+The repo for the streamlit app is [found here](https://github.com/tobiolabode/shakespare_translation_streamlit) with the notebook repo [found here](pass)
+
 """
 )
 
@@ -121,7 +124,7 @@ if st.button("Submit"):
         predicted_seq, attentions = evaluate(encoder1, attn_decoder1, input_text)
         formatted_predicted_seq = ' '.join(predicted_seq)
         st.success(formatted_predicted_seq)
-        st.success(showAttention(input_text, predicted_seq, attentions))
+        showAttention(input_text, predicted_seq, attentions)
 
         # #correct Translation
         # st.subheader("Actual Shakespare Translation")
